@@ -1,31 +1,31 @@
-version: '3.3'
+version: "3.3"
 services:
   service:
-    container_name: 'service'
-    build: './src' 
-    networks:
-      - net   
-    ports:
-      - '8080:8080'
-    volumes:
-      - './src:/go/src/service'
-    depends_on:
-      - db    
-
-  web:
-    container_name: 'web'
-    image: 'nginx:latest'
+    container_name: "service"
+    build: "./src"
     networks:
       - net
     ports:
-      - '80:80'
+      - "8080:8080"
     volumes:
-      - './view:/usr/share/nginx/html'
+      - "./src:/go/src/service"
     depends_on:
-      - 'service'
-  
+      - db
+
+  web:
+    container_name: "websrv-nginx"
+    image: "nginx:latest"
+    networks:
+      - net
+    ports:
+      - "80:80"
+    volumes:
+      - "./view:/usr/share/nginx/html"
+    depends_on:
+      - "service"
+
   db:
-    image: postgres:alpine
+    image: postgres:latest
     container_name: db
     hostname: db
     restart: "always"
@@ -38,6 +38,5 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=challenge
-networks:
-  net:
+      - POSTGRES_DB=dbasego
+networks: net:

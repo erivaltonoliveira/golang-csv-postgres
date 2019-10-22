@@ -5,25 +5,27 @@ import (
 	"os"
 )
 
-// Funcao que le o conteudo do arquivo e retorna um slice the string com todas as linhas do arquivo
-func ReadFile(caminhoDoArquivo string) ([]string, error) {
+// lê o conteudo do arquivo e retorna um string com todas as linhas do arquivo
+func ReadFile(filePath string) ([]string, error) {
 
 	// Abre o arquivo
-	arquivo, err := os.Open(caminhoDoArquivo)
-	// Caso tenha encontrado algum erro ao tentar abrir o arquivo retorne o erro encontrado
+	file, err := os.Open(filePath)
+	
+	// retorna o erro encontrado ao tentar abrir o arquivo 
 	if err != nil {
-		//return nil, err
+		return nil, err
 	}
-	// Garante que o arquivo sera fechado apos o uso
-	defer arquivo.Close()
+	
+	// fecha o arquivo após uso
+	defer file.Close()
 
-	// Cria um scanner que le cada linha do arquivo
+	// lê o arquivo linha a linha
 	var linhas []string
-	scanner := bufio.NewScanner(arquivo)
+	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		linhas = append(linhas, scanner.Text())
+		lines = append(lines, scanner.Text())
 	}
 
-	// Retorna as linhas lidas e um erro se ocorrer algum erro no scanner
-	return linhas, scanner.Err()
+	// Retorna as linhas lidas e um erro se ocorrer
+	return lines, scanner.Err()
 }

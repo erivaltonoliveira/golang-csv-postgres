@@ -1,7 +1,5 @@
 package control
 
-// To upload a file, go to :8080/upload
-
 import (
 	"fmt"
 	"io/ioutil"
@@ -37,9 +35,9 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 
 	// Create a temporary file within our temp-images directory that follows
 	// a particular naming pattern
-	err = ioutil.WriteFile("../tmp/tempfile.txt", fileBytes, 0644)
+	err = ioutil.WriteFile("../tmp/temp.txt", fileBytes, 0644)
 	if err != nil {
-		//return err
+		return err
 	}
 
 	// return that we have successfully uploaded our file!

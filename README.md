@@ -1,6 +1,6 @@
 # Microserviço com GOLANG/Postgres
 
-O objetivo deste projeto consiste em um serviço de importação de arquivo csv para base de dados Postgresql utilizando a linguagem GOLANG.
+Importação de arquivo csv/txt para base de dados Postgresql utilizando a linguagem GOLANG.
 
 ### Requisitos do projeto
 
@@ -32,60 +32,57 @@ O objetivo deste projeto consiste em um serviço de importação de arquivo csv 
 - Postgres Database (Sugerida a utilização da ferramenta PGADMIN para consultas a base de dados)
 - GIT instalado
 
-Para utilização do projeto, necessita ser clonado o seguinte repositório:
-
-- git clone https://github.com/erivaltonoliveira/golang-csv-postgres
+Para utilização do projeto:
+Clonar o seguinte repositório - git clone https://github.com/erivaltonoliveira/golang-csv-postgres
 
 Há um package necessário para a execução do projeto, contendo funções para validação de documentos CPF e CNPJ. Necessário verificar antes de rodar a aplicação. Sendo necessário executar o seguinte comando na pasta do projeto:
 
-go get "github.com/Nhanderu/brdoc"
+    go get "github.com/Nhanderu/brdoc"
 
-Após clonar o repositório, ir até o diretório /src do projeto e executar
-
-```
-go run main.go
-```
+Após clonar o repositório, ir até o diretório /src do projeto e executar o comando go run main.go
 
 Ao acessar http://localhost:8080 (ou APPLICATIONPATH/view/index.html):
 
 - Será carregado formulario para seleção e envio do arquivo texto, que pode ser tanto no formato CSV , quanto TXT
+
 - Ao confirmar o envio a aplicação irá importados para a da base de dados (tabela CLIENTE), validando as informações de documentos como CPF e CNPJ.
 
 ### Estrutura relacional
 
-A estrutura relacional para a aplicação consiste de apenas uma tabela [CLIENTE], e sua crição será efetuada automaticamente na execução da aplicaçõ.
+A estrutura relacional para a aplicação consiste de apenas uma tabela [CUSTOMER], e sua crição será efetuada automaticamente na execução da aplicaçõ.
 
 Estrutura da tabela:
 
 ```
-CREATE TABLE IF NOT EXISTS CLIENTE (
-  id serial,
-  cpf text,
-  cpf_valido bool,
-  private int,
-  incompleto int,
-  data_ultima_compra date,
-  ticket_medio numeric(15,2),
-  ticket_ultima_compra numeric(15,2),
-  cnpj_mais_frequente text,
-  cnpj_mais_frequente_valido bool,
-  cnpj_ultima_compra text,
-  cnpj_ultima_compra_valido bool
- )
+    CREATE TABLE IF NOT EXISTS CUSTOMER (
+    id serial,
+    cpf text,
+    cpf_valido bool,
+    private int,
+    incompleto int,
+    data_ultima_compra date,
+    ticket_medio numeric(15,2),
+    ticket_ultima_compra numeric(15,2),
+    cnpj_mais_frequente text,
+    cnpj_mais_frequente_valido bool,
+    cnpj_ultima_compra text,
+    cnpj_ultima_compra_valido bool
+    )
 ```
 
 ### Configuração de Banco de Dados
 
-```HOST     = "localhost"
+```
+    HOST     = "localhost"
 	PORT     = 5432
 	USER     = "postgres"
 	PASSWORD = "root"
-	DBNAME   = "challenge"
+	DBNAME   = "dbasego"
 ```
 
 ### Estrutura de pastas do projeto
 
-Projeto foi criado utilizando estrutura de arquivos baseado em MVC:
+A estrutura de arquivos segue o padrão MVC:
 
 ```
 .
@@ -111,22 +108,8 @@ Projeto foi criado utilizando estrutura de arquivos baseado em MVC:
 
 ```
 
-### Rodando com Docker composer
+### Para rodar o projeto com Docker composer
 
-Para utilização da aplicação com Docker (necessário Docker instalado) no diretório raíz do projeto existe o arquivo:
+Na raíz temos o arquivo "docker-compose.yml" para utilização com Docker (necessário instalar Docker)
 
-```
-docker-compose.yml
-```
-
-No mesmo diretório raíz, executar o comando para execução da aplicação:
-
-```
-docker-compose up
-```
-
-### Sugestões de melhoria
-
-**[TO DO LIST]:**
-
-- Espaço dedicado a novas issues e sugestões de melhoria à aplicação.
+Para execução da aplicação executar "docker-compose up" no diretório raíz:

@@ -11,7 +11,7 @@ const (
 	PORT     = 5432
 	USER     = "postgres"
 	PASSWORD = "root"
-	DBNAME   = "challenge"
+	DBNAME   = "dbasego"
 )
 
 func Open() (*sql.DB, error) {
@@ -23,8 +23,6 @@ func Open() (*sql.DB, error) {
 		log.Fatalf("database.Connect ERROR: %s", err)
 		return nil, err
 	}
-
-	//defer db.Close()
 
 	err = db.Ping()
 	if err != nil {
