@@ -1,18 +1,16 @@
-# Microserviço com GOLANG/Postgres
+# GOLANG/Postgres
 
 Importação de arquivo csv/txt para base de dados Postgresql utilizando a linguagem GOLANG.
 
-### Requisitos do projeto
+### Instruções do projeto
 
 **Obrigatórios:**
 
 - Criar um serviço em GO que receba um arquivo csv/txt de entrada (Arquivo Anexo)
 - Este serviço deve persistir no banco de dados relacional (postgres) todos os dados contidos no arquivo
   Obs: O arquivo não possui um separador muito convencional
-
 - Deve-se fazer o split dos dados em colunas no banco de dados
   Obs: pode ser feito diretamente no serviço em GO ou em sql
-
 - Realizar higienização dos dados após persistência (sem acento, maiusculo, etc)
 - Validar os CPFs/CNPJs contidos (validos e não validos numericamente)
 - Todo o código deve estar disponível em repositório publico do GIT
@@ -23,7 +21,7 @@ Importação de arquivo csv/txt para base de dados Postgresql utilizando a lingu
 - Utilização do DB Postgres
 - Docker Compose , com orientações para executar (arquivo readme)
 
-### Utilização
+### Como Utilizar
 
 **Dependências:**
 
