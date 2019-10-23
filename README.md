@@ -33,13 +33,13 @@ Importação de arquivo csv/txt para base de dados Postgresql utilizando a lingu
 Para utilização do projeto:
 Clonar o seguinte repositório - git clone https://github.com/erivaltonoliveira/golang-csv-postgres
 
-Há um package necessário para a execução do projeto, contendo funções para validação de documentos CPF e CNPJ. Necessário verificar antes de rodar a aplicação. Sendo necessário executar o seguinte comando na pasta do projeto:
+Necessário o package "brdoc" contendo funções para validação de documentos CPF e CNPJ. É necessário executar o seguinte comando na pasta do projeto:
 
     go get "github.com/Nhanderu/brdoc"
 
 Após clonar o repositório, ir até o diretório /src do projeto e executar o comando go run main.go
 
-Ao acessar http://localhost:8080 (ou APPLICATIONPATH/view/index.html):
+Ao acessar http://localhost:8080 :
 
 - Será carregado formulario para seleção e envio do arquivo texto, que pode ser tanto no formato CSV , quanto TXT
 
@@ -118,4 +118,4 @@ Para execução da aplicação executar "docker-compose up" no diretório raíz:
 - https://docs.docker.com/
 - https://www.admfactory.com/how-to-convert-a-string-to-an-int-type-in-golang/
 - https://tutorialedge.net/golang/go-file-upload-tutorial/
-- github.com/Nhanderu/brdoc
+- https://github.com/Nhanderu/brdoc
