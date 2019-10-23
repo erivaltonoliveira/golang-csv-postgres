@@ -1,10 +1,10 @@
 FROM golang
 
 ENV GOPATH /htdocs/golang-csv-postgres
-ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+ENV PATH $GOPATH:/usr/local/go/bin:$PATH
 
-RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
-WORKDIR $GOPATH
+#RUN mkdir -p "$GOPATH/src" "$GOPATH/src" && chmod -R 777 "$GOPATH"
+WORKDIR $GOPATH/src
 
 #WORKDIR /htdocs/golang-csv-postgres/src
 

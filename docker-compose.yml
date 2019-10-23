@@ -10,15 +10,15 @@ services:
     depends_on:
       - db
 
-  web:
-    container_name: "websrv-nginx"
-    image: "nginx:latest"
-    ports:
-      - "80:80"
-    volumes:
-      - "./view:/usr/share/nginx/html"
-    depends_on:
-      - "service"
+  # web:
+  #   container_name: "websrv-nginx"
+  #   image: "nginx:latest"
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - "./view:/usr/share/nginx/html"
+  #   depends_on:
+  #     - "service"
 
   db:
     image: postgres:latest
