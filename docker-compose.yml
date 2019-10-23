@@ -9,6 +9,8 @@ services:
       - "./src:/go/src/service"
     depends_on:
       - db
+    links:
+      - db
 
   # web:
   #   container_name: "websrv-nginx"
@@ -24,7 +26,7 @@ services:
     image: postgres:latest
     container_name: db
     hostname: db
-    restart: "always"
+    restart: unless-stopped
     ports:
       - "5432:5432"
     expose:
