@@ -43,7 +43,7 @@ Ao acessar http://localhost:8080 (ou APPLICATIONPATH/view/index.html):
 
 - Será carregado formulario para seleção e envio do arquivo texto, que pode ser tanto no formato CSV , quanto TXT
 
-- Ao confirmar o envio a aplicação irá importados para a da base de dados (tabela CLIENTE), validando as informações de documentos como CPF e CNPJ.
+- Ao confirmar o envio a aplicação irá importados para a da base de dados (tabela CUSTOMER), validando as informações de documentos como CPF e CNPJ.
 
 ### Estrutura relacional
 
@@ -118,3 +118,4 @@ Para execução da aplicação executar "docker-compose up" no diretório raíz:
 - https://docs.docker.com/
 - https://www.admfactory.com/how-to-convert-a-string-to-an-int-type-in-golang/
 - https://tutorialedge.net/golang/go-file-upload-tutorial/
+- github.com/Nhanderu/brdoc
