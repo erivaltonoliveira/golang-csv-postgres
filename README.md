@@ -116,6 +116,8 @@ Para execução da aplicação executar "docker-compose up" no diretório raíz:
 
 - https://golang.org/doc/
 - https://docs.docker.com/
+- http://godoc.org/github.com/lib/pq
+- https://github.com/Nhanderu/brdoc
 - https://www.admfactory.com/how-to-convert-a-string-to-an-int-type-in-golang/
 - https://tutorialedge.net/golang/go-file-upload-tutorial/
-- https://github.com/Nhanderu/brdoc
+- https://medium.com/@simplyianm/how-go-solves-date-and-time-formatting-8a932117c41c

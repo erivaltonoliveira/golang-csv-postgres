@@ -30,7 +30,7 @@ func StrToDate(str string) time.Time {
 		}
 
 	} else {
-		data, err := time.Parse("2006-01-02", "0001-01-01")
+		data, err := time.Parse("2006-01-02", "1900-01-01")
 		if err == nil {
 			return data
 		} else {
