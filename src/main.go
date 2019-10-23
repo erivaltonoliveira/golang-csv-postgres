@@ -10,7 +10,7 @@ import (
 	"./lib/util"
 	"./model"
 
-	_ "github.com/lib/pq"
+	//_ "github.com/lib/pq"
 )
 
 var connection *sql.DB

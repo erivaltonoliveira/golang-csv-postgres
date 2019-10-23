@@ -37,7 +37,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 	// a particular naming pattern
 	err = ioutil.WriteFile("../tmp/tmp_file.txt", fileBytes, 0644)
 	if err != nil {
-		return err
+		//return err
 	}
 
 	// return that we have successfully uploaded our file!

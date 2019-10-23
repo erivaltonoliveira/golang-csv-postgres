@@ -3,8 +3,6 @@ services:
   service:
     container_name: "service"
     build: "./src"
-    networks:
-      - net
     ports:
       - "8080:8080"
     volumes:
@@ -15,8 +13,6 @@ services:
   web:
     container_name: "websrv-nginx"
     image: "nginx:latest"
-    networks:
-      - net
     ports:
       - "80:80"
     volumes:
@@ -29,8 +25,6 @@ services:
     container_name: db
     hostname: db
     restart: "always"
-    networks:
-      - net
     ports:
       - "5432:5432"
     expose:
@@ -39,4 +33,3 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=dbasego
-networks: net:

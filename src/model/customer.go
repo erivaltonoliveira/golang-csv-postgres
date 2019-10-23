@@ -36,20 +36,7 @@ func CreateTableCustomer(db *sql.DB) error {
 	DropTableCustomer(db)
 
 	//Cria tabela CUSTOMER
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS CUSTOMER ( 
-		id serial, 
-		cpf text, 
-		cpf_valido bool, 
-		private int, 
-		incompleto int, 
-		data_ultima_compra date, 
-		ticket_medio numeric(15,2), 
-		ticket_ultima_compra numeric(15,2), 
-		cnpj_mais_frequente text, 
-		cnpj_mais_frequente_valido bool, 
-		cnpj_ultima_compra text, 
-		cnpj_ultima_compra_valido bool)`
-	)
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS CUSTOMER (id serial,cpf text,cpf_valido bool,private int,incompleto int,data_ultima_compra date,ticket_medio numeric(15,2),ticket_ultima_compra numeric(15,2),cnpj_mais_frequente text,cnpj_mais_frequente_valido bool,cnpj_ultima_compra text,cnpj_ultima_compra_valido bool)`)
 	if err != nil {
 		log.Fatalf("Error creating table ERROR: %s", err)
 		return err
@@ -63,16 +50,7 @@ func InsertRowCustomer(db *sql.DB, row Customer) {
 	ctx, stop := context.WithCancel(context.Background())
 	defer stop()
 
-	sqlStatement := `INSERT INTO CUSTOMER(` +
-		` cpf,
-			private,
-			incompleto,
-			data_ultima_compra,
-			ticket_medio,
-			ticket_ultima_compra,
-			cnpj_mais_frequente,
-			cnpj_ultima_compra) 
-			VALUES` +
+	sqlStatement := `INSERT INTO CUSTOMER(`+`cpf,private,incompleto,data_ultima_compra,ticket_medio,ticket_ultima_compra,cnpj_mais_frequente,cnpj_ultima_compra) VALUES` +
 		fmt.Sprintf(" ('%v', %v, %v, '%v', %v, %v, '%v', '%v') ",
 			row.Cpf, row.Private, row.Incompleto, row.DataUltimaCompra.Format("2006-01-02"), row.TicketMedio, row.TicketUltimaCompra, row.CnpjMaisFrequente, row.CnpjUltimaCompra)
 	_, err := db.ExecContext(ctx, sqlStatement)
@@ -82,12 +60,7 @@ func InsertRowCustomer(db *sql.DB, row Customer) {
 }
 
 func ValidateCustomerDocs(db *sql.DB) {
-	rows, err := db.Query(`SELECT 
-		id, 
-		cpf, 
-		cnpj_mais_frequente, 
-		cnpj_ultima_compra FROM CUSTOMER`
-	)
+	rows, err := db.Query(`SELECT id,cpf,cnpj_mais_frequente,cnpj_ultima_compra FROM CUSTOMER`)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}
