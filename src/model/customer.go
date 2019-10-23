@@ -22,7 +22,7 @@ type Customer struct {
 }
 
 func DropTableCustomer(db *sql.DB) error {
-	_, err := db.Exec(`DROP TABLE IF EXISTS CLIENTE`)
+	_, err := db.Exec(`DROP TABLE IF EXISTS CUSTOMER`)
 	if err != nil {
 		log.Fatalf("Error droping table ERROR: %s", err)
 		return err
@@ -35,8 +35,21 @@ func CreateTableCustomer(db *sql.DB) error {
 	//
 	DropTableCustomer(db)
 
-	//Cria tabelas
-	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS CLIENTE ( id serial, cpf text, cpf_valido bool, private int, incompleto int, data_ultima_compra date, ticket_medio numeric(15,2), ticket_ultima_compra numeric(15,2), cnpj_mais_frequente text, cnpj_mais_frequente_valido bool, cnpj_ultima_compra text, cnpj_ultima_compra_valido bool)`)
+	//Cria tabela CUSTOMER
+	_, err := db.Exec(`CREATE TABLE IF NOT EXISTS CUSTOMER ( 
+		id serial, 
+		cpf text, 
+		cpf_valido bool, 
+		private int, 
+		incompleto int, 
+		data_ultima_compra date, 
+		ticket_medio numeric(15,2), 
+		ticket_ultima_compra numeric(15,2), 
+		cnpj_mais_frequente text, 
+		cnpj_mais_frequente_valido bool, 
+		cnpj_ultima_compra text, 
+		cnpj_ultima_compra_valido bool)`
+	)
 	if err != nil {
 		log.Fatalf("Error creating table ERROR: %s", err)
 		return err
@@ -50,8 +63,16 @@ func InsertRowCustomer(db *sql.DB, row Customer) {
 	ctx, stop := context.WithCancel(context.Background())
 	defer stop()
 
-	sqlStatement := `INSERT INTO CLIENTE(` +
-		`  cpf ,  private,  incompleto,  data_ultima_compra,  ticket_medio,  ticket_ultima_compra,  cnpj_mais_frequente,  cnpj_ultima_compra) VALUES` +
+	sqlStatement := `INSERT INTO CUSTOMER(` +
+		` cpf,
+			private,
+			incompleto,
+			data_ultima_compra,
+			ticket_medio,
+			ticket_ultima_compra,
+			cnpj_mais_frequente,
+			cnpj_ultima_compra) 
+			VALUES` +
 		fmt.Sprintf(" ('%v', %v, %v, '%v', %v, %v, '%v', '%v') ",
 			row.Cpf, row.Private, row.Incompleto, row.DataUltimaCompra.Format("2006-01-02"), row.TicketMedio, row.TicketUltimaCompra, row.CnpjMaisFrequente, row.CnpjUltimaCompra)
 	_, err := db.ExecContext(ctx, sqlStatement)
@@ -61,7 +82,12 @@ func InsertRowCustomer(db *sql.DB, row Customer) {
 }
 
 func ValidateCustomerDocs(db *sql.DB) {
-	rows, err := db.Query(`SELECT id, cpf, cnpj_mais_frequente, cnpj_ultima_compra FROM CLIENTE`)
+	rows, err := db.Query(`SELECT 
+		id, 
+		cpf, 
+		cnpj_mais_frequente, 
+		cnpj_ultima_compra FROM CUSTOMER`
+	)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}
@@ -89,8 +115,13 @@ func ValidateCustomerDocs(db *sql.DB) {
 			cnpjUltimaCompraValido = true
 		}
 
-		sqlStatement := `UPDATE cliente SET cpf = $2, cnpj_mais_frequente = $3, cnpj_ultima_compra = $4, ` +
-			`cpf_valido = $5, cnpj_mais_frequente_valido = $6, cnpj_ultima_compra_valido = $7` +
+		sqlStatement := `UPDATE customer SET 
+			cpf = $2, 
+			cnpj_mais_frequente = $3, 
+			cnpj_ultima_compra = $4, ` +
+			`cpf_valido = $5, 
+			cnpj_mais_frequente_valido = $6, 
+			cnpj_ultima_compra_valido = $7` +
 			`WHERE id = $1`
 
 		_, err = db.Exec(sqlStatement, id, ClearDocs(cpf), ClearDocs(cnpjMaisFrequente), ClearDocs(cnpjUltimaCompra),
@@ -101,7 +132,7 @@ func ValidateCustomerDocs(db *sql.DB) {
 		}
 
 	}
-	err = rows.Err() // get any error encountered ing iteration
+	err = rows.Err()
 
 }
 
@@ -110,8 +141,4 @@ func ClearDocs(doc string) string {
 	doc = strings.Replace(doc, "-", "", -1)
 	doc = strings.Replace(doc, "/", "", -1)
 	return doc
-}
-
-func UpdateCustomerDocs() {
-
 }

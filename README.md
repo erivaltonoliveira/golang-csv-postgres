@@ -72,10 +72,10 @@ Estrutura da tabela:
 
 ```
     HOST     = "localhost"
-	PORT     = 5432
-	USER     = "postgres"
-	PASSWORD = "root"
-	DBNAME   = "dbasego"
+    PORT     = 5432
+    USER     = "postgres"
+    PASSWORD = "root"
+    DBNAME   = "dbasego"
 ```
 
 ### Estrutura de pastas do projeto
@@ -111,3 +111,10 @@ A estrutura de arquivos segue o padrão MVC:
 Na raíz temos o arquivo "docker-compose.yml" para utilização com Docker (necessário instalar Docker)
 
 Para execução da aplicação executar "docker-compose up" no diretório raíz:
+
+### Fontes de estudo
+
+- https://golang.org/doc/
+- https://docs.docker.com/
+- https://www.admfactory.com/how-to-convert-a-string-to-an-int-type-in-golang/
+- https://tutorialedge.net/golang/go-file-upload-tutorial/

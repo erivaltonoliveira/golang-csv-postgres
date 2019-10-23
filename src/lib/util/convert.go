@@ -21,7 +21,7 @@ func StrToInt(str string) int64 {
 
 func StrToDate(str string) time.Time {
 	if str != "NULL" {
-		data, err := time.Parse("2019-01-02", str)
+		data, err := time.Parse("2006-01-02", str)
 
 		if err == nil {
 			return data
@@ -30,7 +30,7 @@ func StrToDate(str string) time.Time {
 		}
 
 	} else {
-		data, err := time.Parse("2019-01-02", "0001-01-01")
+		data, err := time.Parse("2006-01-02", "0001-01-01")
 		if err == nil {
 			return data
 		} else {

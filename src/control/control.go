@@ -35,7 +35,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
 
 	// Create a temporary file within our temp-images directory that follows
 	// a particular naming pattern
-	err = ioutil.WriteFile("../tmp/temp.txt", fileBytes, 0644)
+	err = ioutil.WriteFile("../tmp/tmp_file.txt", fileBytes, 0644)
 	if err != nil {
 		return err
 	}

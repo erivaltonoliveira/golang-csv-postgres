@@ -13,7 +13,7 @@ import (
 	_ "github.com/lib/pq"
 )
 
-var connection *sql.DB // Database connection
+var connection *sql.DB
 
 func main() {
 	var content []string
@@ -21,16 +21,14 @@ func main() {
 	var err error
 	content = nil
 
-	//Inicia Serviço
 	control.Init()
 
-	filename := "../tmp/tempfile.txt"
+	filename := "../tmp/tmp_file.txt"
 	content, err = util.ReadFile(filename)
 	if err != nil {
 		log.Fatalf("Error reading file:", err)
 	}
 
-	//Conecta banco de dados / servico
 	connection, err = db.Open()
 	if err != nil {
 		panic(err)
@@ -47,11 +45,11 @@ func main() {
 			row = strings.Fields(linha)
 			customer := model.Customer{}
 			customer.Cpf = row[0]
-			customer.Private = util.ConvertStrToInt(row[1])
-			customer.Incompleto = util.ConvertStrToInt(row[2])
-			customer.DataUltimaCompra = util.ConvertStrToDate(row[3])
-			customer.TicketMedio = util.ConvertStrToFloat(row[4])
-			customer.TicketUltimaCompra = util.ConvertStrToFloat(row[5])
+			customer.Private = util.StrToInt(row[1])
+			customer.Incompleto = util.StrToInt(row[2])
+			customer.DataUltimaCompra = util.StrToDate(row[3])
+			customer.TicketMedio = util.StrToFloat(row[4])
+			customer.TicketUltimaCompra = util.StrToFloat(row[5])
 			customer.CnpjMaisFrequente = row[6]
 			customer.CnpjUltimaCompra = row[7]
 			model.InsertRowCustomer(connection, customer)
