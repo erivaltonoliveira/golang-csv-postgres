@@ -57,7 +57,7 @@ func setupRoutes() {
 	http.Handle("/", http.FileServer(http.Dir("./view")))
 
 	http.HandleFunc("/upload", uploadFile)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8081", nil)
 }
 
 func Init() {

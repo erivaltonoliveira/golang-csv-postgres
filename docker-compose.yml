@@ -1,27 +1,28 @@
 version: "3.3"
 services:
-  service:
-    container_name: "service"
-    build: "./src"
-    ports:
-      - "8080:8080"
-    volumes:
-      - "./src:/go/src/service"
-    depends_on:
-      - db
-    links:
-      - db
+    service:
+        image: golang
+        container_name: "service"
+        build: "./src"
+        ports:
+            - "8081:8081"
+        volumes:
+            - "./src:/go/src/service"
+        depends_on:
+            - db
+        links:
+            - db
 
-   db:
-    image: postgres:latest
-    container_name: db
-    hostname: db
-    restart: unless-stopped
-    ports:
-      - "5432:5432"
-    expose:
-      - "5432"
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=dbasego
+    db:
+        image: postgres
+        container_name: db
+        hostname: db
+        restart: unless-stopped
+        ports:
+            - "5432:5432"
+        expose:
+            - "5432"
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=root
+            - POSTGRES_DB=dbasego
