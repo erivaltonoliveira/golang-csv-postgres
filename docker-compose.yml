@@ -2,7 +2,7 @@ version: "3.3"
 services:
     service:
         image: golang
-        container_name: "service"
+        container_name: "golang"
         build: "./src"
         ports:
             - "8081:8081"
